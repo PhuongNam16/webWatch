@@ -1,0 +1,96 @@
+a{
+    text-decoration: none;
+}
+.container{
+    /* width: 1200px; */
+    display: flex;
+    flex-wrap : wrap;
+}
+.item{
+    height : 380px;
+    width: 220px;
+    margin: 10px
+}
+
+
+.Image{
+    position: relative;
+    margin-bottom: 10px;
+}
+
+img{
+    width: 220px;
+    height: 220px;
+}
+.item .top1 {
+    width: 50px;
+    height: 50px;
+    background: url('https://www.dangquangwatch.vn/view/css/icon/icosale31.png') top right no-repeat;
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    right: -33px;
+}
+.item .top1 span {
+    top: 8px;
+    right: 3px;
+    font-size: 14px;
+}
+.item .top1 span {
+    position: absolute;
+    font-family: RobotoM;
+    transform: rotate(45deg);
+    /* top: 10px;
+    right: 1px;
+    color: #000; */
+    font-size: 14px;
+    text-transform: uppercase;
+}
+.info{
+    height: 146px;
+    width: 100%;
+}
+h3 {
+    font-size: 14px;
+    color: #777;
+    line-height: 20px;
+}
+.item .info, .product .group .item .info {
+    font-size: 12px;
+    color: #777;
+}
+.item .price {
+    display: flex;
+    align-items: baseline;
+    
+}
+.item .price .new {
+    font-family: RobotoB;
+    color: #e10c00;
+    font-size: 15px;
+    margin-right: 20px;
+    font-weight: bold;
+}
+.item .price .old{
+    font-size: 13px;
+    text-decoration: line-through;
+}
+
+.item .btnBuy {
+    display: table;
+    margin: auto;
+    margin-top: 15px;
+    border: 1px solid #fed501;
+    line-height: 28px;
+    border-radius: 3px;
+    padding: 0 15px;
+    min-width: 108px;
+    text-transform: uppercase;
+    font-family: RobotoM;
+    text-align: center;
+    color: #000;
+    font-weight: bold;
+}
+.item .btnBuy:hover {
+    background-color:#fed501
+}
