@@ -50,12 +50,14 @@ const ScreenItem = () => {
                 <li class="page-item"><a class="page-link" href="#" onClick={() => dispatch(PAGINATIONPRODUCT({page:1, limit:limit}))}>1</a></li>
                 <li class="page-item"><a class="page-link" href="#" onClick={() => dispatch(PAGINATIONPRODUCT({page:2, limit:limit}))}>2</a></li>
                 <li class="page-item"><a class="page-link" href="#" onClick={() => dispatch(PAGINATIONPRODUCT({page:3, limit:limit}))}>3</a></li>
+                <li class="page-item"><a class="page-link" href="#" onClick={() => dispatch(PAGINATIONPRODUCT({page:4, limit:limit}))}>4</a></li>
+                <li class="page-item"><a class="page-link" href="#" onClick={() => dispatch(PAGINATIONPRODUCT({page:5, limit:limit}))}>5</a></li>
                 <li class="page-item">
                   <a class="page-link" href="#">Next</a>
                 </li>
               </ul>
             </nav>
-            <button onClick={() => dispatch(PAGINATIONPRODUCT({page:page, limit:limit}))}>page</button>
+            {/* <button onClick={() => dispatch(PAGINATIONPRODUCT({page:page, limit:limit}))}>page</button> */}
       </div>
     )
 }

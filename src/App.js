@@ -10,17 +10,19 @@ import Login from './components/screens/login/Login';
 function App () {
   return (
     <div className="App">
-      {/* <Router>
+      <Router>
         <Switch>
-          <Route path="/Cart">
+        <Route path="/Cart">
             <Cart />
+          </Route>
+          <Route path="/Login">
+            <Login />
           </Route>
           <Route path="/">
             <ScreenItem />
           </Route>
         </Switch>
-      </Router> */}
-      <Login/>
+      </Router>
     </div>
   );
 }

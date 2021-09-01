@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { AUTHENTICATION } from '../../../store/reducers/authenReducer';
 import { getToken } from '../../../utils/util';
+import Header from '../layouts/Header';
 import './login.css';
 const Login = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const Login = () => {
   }
   return (
     <div id="login">
+    <Header/>
       <div className="container">
         <div
           id="login-row"
