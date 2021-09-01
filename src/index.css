@@ -5,8 +5,11 @@
   /* background: rgb(219, 219, 219); */
   /* margin: 20px auto; */
   /* width: 90%; */
-  /* max-width: 1200px;
-  margin: auto;
-  margin-top:50px */
+  margin: 0 auto;
+ }
+ .container{
+   max-width: 1400px;
+   width: 100%;
+   justify-content:center
  }
  

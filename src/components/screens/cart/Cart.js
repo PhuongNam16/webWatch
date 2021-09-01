@@ -1,13 +1,18 @@
+import numeral from 'numeral';
 import React from 'react';
-import { useSelector } from 'react-redux';
-import Header from './Header'
+import { useDispatch, useSelector } from 'react-redux';
+import { deletedCart } from '../../../store/reducers/productReducer';
+import Header from '../layouts/Header'
 const Cart = () => {
+  const dispatch = useDispatch();
     const Cart = useSelector(state => state?.productReducer?.listCart)
+    const Sum = useSelector(state => state?.productReducer?.sum)
   return (
     <div>
     <Header/>
-    <div className ="container">
+    <div className ="container ">
        {Cart.length> 0?
+        <div class="table-responsive table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl table-responsive-xxl">
       <table className="table">
         <thead>
           <tr>
@@ -27,12 +32,14 @@ const Cart = () => {
             <td >{cart.name}</td>
             <td ><img src={cart.image} style={{width : '100px', height : '100px'}}/></td>
             <td >1</td>
-            <td >{cart.price} VNĐ</td>
-            <td>{cart.price *1} VNĐ</td>
-            <td><button>Del</button></td>
+            <td >{numeral(cart.price).format('0,0')} VNĐ</td>
+            <td>{numeral(cart.price *1).format('0,0')} VNĐ</td>
+            <td><button type="button" class="btn btn-danger" onClick={() => dispatch(deletedCart(cart._id))}>Xóa</button></td>
           </tr>))}
         </tbody>
-      </table>: <h1>Bạn chưa có sản phẩm nào</h1>}
+      </table><h1 style={{fontSize:'30px'}}>Tổng Tiền : {numeral(Sum).format('0,0')} VNĐ</h1>
+      </div>: <h1>Bạn chưa có sản phẩm nào</h1>
+      }
     </div>
 
     </div>

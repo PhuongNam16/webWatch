@@ -9,3 +9,6 @@ const instance = axios.create ({
   },
 });
 export const getProduct = () => instance.get('/getproduct');
+export const searchProductByName = (params) => instance.post('/getproductbyname',params);
+export const pagination = (param) => instance.get('/listproduct&page='+ param.page + '&limit=' + param.limit);
+export const authentication = (params) => instance.post('/loginAdmin',params);

@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { SEARCHPRODUCT } from '../../../store/reducers/productReducer';
 
-const header = () => {
+const Header = () => {
+  const [searchProduct, setSearchProduct] = useState();
+  const dispatch = useDispatch();
+  const changeTitle =(e)=>{
+    setSearchProduct(e.target.value);
+  }
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -69,17 +76,17 @@ const header = () => {
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
+                onChange={changeTitle}
               />
-              <button className="btn btn-outline-success" type="submit">
+              <button className="btn btn-outline-success" type="submit" onClick={()=> dispatch(SEARCHPRODUCT({name: searchProduct}))} >
                 Search
               </button>
             </form>
           </div>
         </div>
       </nav>
-
     </div>
   );
 };
 
-export default header;
+export default Header;
