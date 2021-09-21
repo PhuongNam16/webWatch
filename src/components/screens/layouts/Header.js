@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 import { SEARCHPRODUCT } from '../../../store/reducers/productReducer';
 
 const Header = () => {
+  
   const [searchProduct, setSearchProduct] = useState();
   const dispatch = useDispatch();
   const changeTitle =(e)=>{
     setSearchProduct(e.target.value);
+    setSearchProduct("");
   }
   return (
     <div>
@@ -49,7 +51,7 @@ const Header = () => {
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><Link className="dropdown-item" to="/Login">Login admin</Link></li>
                   <li>
-                    <a className="dropdown-item" href="#">Another action</a>
+                    <Link className="dropdown-item" to="Product Management">Product Management</Link>
                   </li>
                   <li><hr className="dropdown-divider" /></li>
                   <li>

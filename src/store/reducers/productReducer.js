@@ -1,26 +1,33 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {getProduct, pagination, searchProductByName} from '../../services';
+import {getProduct, loadmore, pagination, searchProductByName} from '../../services';
 
 // First, create the thunk
 export const GETPRODUCT = createAsyncThunk (
   'users/fetchByIdStatus',
   async () => {
-    const response = await getProduct ();
+    const response = await getProduct();
     return response.data;
   }
 );
 export const SEARCHPRODUCT = createAsyncThunk (
   'users/fetchByIdStatus',
-  async params => {
-    const response = await searchProductByName (params);
+  async (params) => {
+    const response = await searchProductByName(params);
     return response.data;
   }
 );
 
 export const PAGINATIONPRODUCT = createAsyncThunk (
   'users/fetchByIdStatus',
-  async params => {
+  async (params) => {
     const response = await pagination(params);
+    return response.data;
+  }
+);
+export const LOAD_MORE = createAsyncThunk (
+  'users/fetchByIdStatus',
+  async (params) => {
+    const response = await loadmore(params);
     return response.data;
   }
 );
@@ -63,8 +70,8 @@ const productSlice = createSlice ({
     },
     [SEARCHPRODUCT.fulfilled]: (state, action) => {
       state.isloading = false;
-      console.log (action.payload);
-      state.listProducts = action.payload;
+      state.listProducts = action.payload; 
+      // console.log("search",action.payload);
     },
     [SEARCHPRODUCT.rejected]: (state, action) => {
       state.isloading = false;
@@ -75,14 +82,28 @@ const productSlice = createSlice ({
     },
     [PAGINATIONPRODUCT.fulfilled]: (state, action) => {
       state.isloading = false;
-      // console.log(action.payload);
       state.listProducts = action.payload;
-      console.log('abc', state.listProducts)
-      console.log('thành công')
+      // console.log('abc', state.listProducts)
+      // console.log('thành công')
     },
     [PAGINATIONPRODUCT.rejected]: (state, action) => {
       state.isloading = false;
-      console.log('thất bại')
+      // console.log('thất bại')
+      state.error = action.payload;
+    },
+    [LOAD_MORE.pending]: state => {
+      // trong trạng thái đợi thực thi
+      state.isloading = true;
+    },
+    [LOAD_MORE.fulfilled]: (state, action) => {
+      state.isloading = false;
+      state.listProducts = action.payload;
+      // console.log('abc', state.listProducts)
+      // console.log('thành công')
+    },
+    [LOAD_MORE.rejected]: (state, action) => {
+      state.isloading = false;
+      // console.log('thất bại')
       state.error = action.payload;
     },
   },

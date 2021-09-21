@@ -1,61 +1,52 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import {getProduct} from '../../services';
 
-const initialState = {value: 0, todos: [], searchTodos: []};
+// First, create the thunk
+export const GETPRODUCT = createAsyncThunk (
+  'users/fetchByIdStatus',
+  async () => {
+    const response = await getProduct();
+    return response.data;
+  }
+);
 
+// Then, handle actions in your reducers:
 const counterSlice = createSlice ({
-  name: 'counter',
-  initialState,
+  name: 'count',
+  initialState: {isloading: false, listCart: [], sum: 0, value: 1},
+
   reducers: {
-    // actions
-    addTodo (state, action) {
-      state.todos = [
-        ...state.todos,
-        {
-          id: Math.random (),
-          title: action.payload,
-        },
-      ];
-      // console.log(state.todos);
+    addCart (state, action) {
+      state.listCart = [...state.listCart, action.payload];
+      state.sum = state.listCart.reduce (
+        (accumulator, currentValue) => accumulator + currentValue.price,
+        0
+      );
+      // console.log ('Tong tien ', state.sum);
     },
-    deleted (state, action) {
-      state.todos = state.todos.filter (todos => todos.id !== action.payload);
-      // console.log(state.todos);
+    deletedCart (state, action) {
+      state.listCart = state.listCart.filter (
+        listCart => listCart._id !== action.payload
+      );
     },
-    sortTodos (state, action) {
-        state.todos = state.todos.sort(function(a, b){
-            if(a.title < b.title) { return -1; }
-            if(a.title > b.title) { return 1; }
-            return 0;
-        })
+    increment (state, action) {
+      
+      state.value++;
+      // console.log(state.value);
     },
-    searchTodos (state, action) {
-        state.searchTodos = state.todos.filter(title => {return title.indexOf(title) !== -1;} )
-    }
-    // increment (state) {
-    //   state.value++;
-    //   // console.log(state.value);
-    // },
-    // decrement (state) {
-    //   state.value--;
-    //   //   console.log(state.value);
-    // },
-    // incrementByAmount (state, action) {
-    //   state.value += action.payload;
-    // },
+    decrement (state, action) {
+      state.value--;
+        // console.log(state.value);
+    },
+    incrementByAmount (state, action) {
+      state.value += action.payload;
+    },
+  },
+  extraReducers: {
+    
   },
 });
 
-export const {
-  increment,
-  decrement,
-  incrementByAmount,
-  addTodo,
-  deleted,
-  sortTodos,
-  searchTodos,
-  
-} = counterSlice.actions;
-// export default counterSlice.reducer
+export const {increment,decrement,incrementByAmount} = counterSlice.actions;
 const {reducer: counterReducer} = counterSlice;
-
 export default counterReducer;
